@@ -1,0 +1,336 @@
+// /**
+// //  * Magento
+//  *
+//  * NOTICE OF LICENSE
+//  *
+//  * This source file is subject to the Academic Free License (AFL 3.0)
+//  * that is bundled with this package in the file LICENSE_AFL.txt.
+//  * It is also available through the world-wide-web at this URL:
+//  * http://opensource.org/licenses/afl-3.0.php
+//  * If you did not receive a copy of the license and are unable to
+//  * obtain it through the world-wide-web, please send an email
+//  * to license@magentocommerce.com so we can send you a copy immediately.
+//  *
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Magento to newer
+//  * versions in the future. If you wish to customize Magento for your
+//  * needs please refer to http://www.magentocommerce.com for more information.
+//  *
+//  * @category    design
+//  * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+//  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+//  */
+
+@import "cart.less";
+@import "minicart.less";
+
+//
+//    One Page Checkout
+//--------------------------------------
+
+.opc-wrapper {
+    &:extend(.add-box-sizing all);
+    .css(padding-bottom, @indent-xl-base);
+    > .opc {
+        &:extend(.reset-list all);
+    }
+    .section {
+        &.allow .step-title {
+            cursor: pointer;
+        }
+        &.active .step-title {
+            color: @color-primary-darker;
+            cursor: default;
+        }
+    }
+    .step {
+        &-title {
+            color: @color-primary-lighter;
+            line-height: 50px;
+            h2,
+            .number {
+                display: inline-block;
+                .heading(h3);
+            }
+            .number:after {
+                content: ".";
+            }
+            border-bottom: @border-width-base solid @border-color-base;
+        }
+        &-content {
+            padding: 20px 25px 40px;
+            position: relative;
+            .addresses .control {
+                margin: 20px 0 30px;
+            }
+            .fieldset {
+                margin-bottom: 0;
+                &.login {
+                    .form-hasrequired(bottom);
+                    &:after {
+                        margin-top: 35px;
+                        text-align: center;
+                    }
+                }
+            }
+            .form {
+                .form-hasrequired(bottom);
+                &:after {
+                    text-align: center;
+                }
+                > .choice {
+                    margin-top: @form-field-vertical-indent;
+                }
+            }
+            .actions {
+                margin-top: 40px;
+            }
+        }
+    }
+
+    //  Shipping and payment mathods
+    .methods-shipping,
+    .methods-payment {
+        img {
+            vertical-align: middle;
+        }
+        .field.month {
+            padding-right: 10px;
+        }
+    }
+
+    //  Shipping methods
+    .methods-shipping {
+        .item-title {
+            &:extend(.abstract-shipping-methods-title all);
+        }
+        .item-content {
+            margin: 0 0 10px 20px;
+        }
+        .price.box {
+            margin-left: 20px;
+            .regular .price {
+                font-weight: @font-weight-bold;
+            }
+        }
+    }
+
+    .methods-payment {
+        .content {
+            margin-bottom: 0;
+            .fieldset {
+                padding: 15px 0;
+            }
+            .label {
+                font-weight: @font-weight-base;
+            }
+        }
+    }
+
+    // Order review
+    .data.table {
+        &:extend(.product-options-list all);
+        .table-caption(@_table-caption-hide: true);
+        tbody tr:first-child td {
+            border-top: @border-width-base solid @border-color-base;
+        }
+        .col {
+            &.price,
+            &.qty {
+                text-align: center;
+                white-space: nowrap;
+            }
+            &.subtotal {
+                text-align: right;
+                white-space: nowrap;
+            }
+        }
+        th.col.subtotal {
+            text-align: center;
+        }
+        .amount {
+            text-align: right;
+        }
+        td {
+            padding: 7px 10px;
+        }
+        tbody tr:last-child td {
+            border-bottom: @border-width-base solid @border-color-base;
+        }
+        .review-item-options {
+            font-size: @font-size-s;
+            margin: 10px 0 0;
+            &:extend(.add-clearfix all);
+        }
+    }
+
+    .action.primary.checkout {
+        margin: 0 0 20px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    //  Customer login
+    .login-wrapper {
+        .block {
+            > .title {
+                &:extend(.login-block-title all);
+            }
+            .fieldset.guest {
+                margin-top: 20px;
+            }
+            .field.choice {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .actions-toolbar {
+        margin: 40px 0 0;
+    }
+}
+
+//
+//    Checkout Progress
+//--------------------------------------
+
+.opc-block-progress {
+    &:extend(.add-box-sizing all);
+    margin-bottom: @indent-l-base;
+    > .title {
+        background: @sidebar-background;
+        .heading(h3);
+        margin: 0;
+        padding: 15px 15px 20px;
+        strong {
+            font-weight: @font-weight-base;
+        }
+    }
+    > .content {
+        background: @sidebar-background;
+        padding: 0 15px 5px;
+        .item-content.complete {
+            margin: 0 0 15px;
+            overflow: hidden;
+        }
+        .action,
+        .payment.method .title {
+            font-weight: @font-weight-base;
+        }
+        .data.table {
+            font-size: @font-size-s;
+        }
+    }
+    .payment-method {
+        > .title {
+            font-weight: @font-weight-light;
+        }
+        > .content {
+            margin: 0 0 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        .items-cards {
+            margin: 0;
+            > .content {
+                margin: 0;
+            }
+        }
+        .data.table {
+            th {
+                padding: 5px 10px 5px 0;
+            }
+            td {
+                padding: 5px 0;
+            }
+        }
+    }
+}
+
+//
+//    Checkout Success
+//--------------------------------------
+
+.checkout-onepage-success {
+    .page-title {
+        .print {
+            display: none;
+        }
+    }
+}
+
+.checkout-success {
+    .actions-toolbar {
+        margin-top: 40px;
+    }
+}
+
+//
+//    Desktop
+//--------------------------------------
+.responsive(@break) when (@break = @break-point-1) {
+
+    .checkout-onepage-index .column.main {
+        &:extend(.add-clearfix-desktop all);
+    }
+
+    .opc-wrapper {
+        .layout-column(2, 2, @layout-column-checkout-main-width);
+        &:extend(.add-box-sizing-desktop all);
+        .step-content {
+            .form {
+                &:after {
+                    text-align: right;
+                }
+            }
+            .form:not(.login) .actions-toolbar {
+                &:extend(.reset-left-margin-desktop all);
+            }
+            .fieldset.login {
+                &:after {
+                        &:extend(.margin-for-forms-desktop all);
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .opc-block-progress {
+        .layout-column(2, 1, @layout-column-checkout-left-width);
+        padding-right: @layout-column-main-sidebar-offset;
+        &:extend(.add-box-sizing-desktop all);
+    }
+
+    .login-wrapper {
+        &:extend(.add-clearfix-desktop all);
+        .block {
+            &:extend(.blocks-2columns all);
+        }
+        .field.choice:not(.persistent) {
+            &:before {
+                display: none;
+            }
+        }
+        .fieldset.login {
+            .actions {
+                &:extend(.margin-for-forms-desktop all);
+            }
+        }
+    }
+
+    //  Checkout success
+    .checkout-onepage-success {
+        .page-title {
+            .print {
+                display: none;
+                display: inline-block;
+                margin-left: 40px;
+                .font-size(14);
+            }
+        }
+    }
+}

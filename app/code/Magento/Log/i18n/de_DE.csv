@@ -1,0 +1,8 @@
+"Start Time",Startzeit
+Frequency,Frequenz
+"Error Email Recipient","Email-Empfänger bei auftretenden Fehlern"
+"Error Email Sender","Email-Absender bei auftretenden Fehlern"
+"Error Email Template","Email-Vorlage bei auftretenden Fehlern"
+"Log Cleaning","Aufräumen des Verlaufs"
+"Save Log, Days","Speichere Verlauf, Tage"
+"Enable Log Cleaning","Aufräumen des Verlaufs anschalten"

@@ -1,0 +1,227 @@
+// /**
+// //  * Magento
+//  *
+//  * NOTICE OF LICENSE
+//  *
+//  * This source file is subject to the Academic Free License (AFL 3.0)
+//  * that is bundled with this package in the file LICENSE_AFL.txt.
+//  * It is also available through the world-wide-web at this URL:
+//  * http://opensource.org/licenses/afl-3.0.php
+//  * If you did not receive a copy of the license and are unable to
+//  * obtain it through the world-wide-web, please send an email
+//  * to license@magentocommerce.com so we can send you a copy immediately.
+//  *
+//  * DISCLAIMER
+//  *
+//  * Do not edit or add to this file if you wish to upgrade Magento to newer
+//  * versions in the future. If you wish to customize Magento for your
+//  * needs please refer to http://www.magentocommerce.com for more information.
+//  *
+//  * @category    design
+//  * @copyright   Copyright (c) 2014 X.commerce, Inc. (http://www.magentocommerce.com)
+//  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+//  */
+
+html.open {
+    overflow: hidden;
+}
+
+body {
+    .css(background-color, @page-bg-color);
+    &.open {
+        overflow: hidden;
+    }
+}
+
+.action.toggle.nav {
+    .icon-font(
+        @icon-menu,
+        @_icon-font-size: 28px
+    );
+    .icon-text-hide();
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    font-size: 0;
+    z-index: 14;
+    cursor: pointer;
+}
+
+.navigation {
+    .switcher {
+        display: block;
+        margin: 0;
+        padding: 0;
+        &:first-child {
+            padding-bottom: 0;
+        }
+        .label {
+            display: block;
+            font-weight: @font-weight-base;
+            .font-size(16);
+            padding: 8px 20px;
+        }
+        .options {
+            display: block;
+            .action.toggle {
+                cursor: pointer;
+                display: block;
+                position: relative;
+                padding: 8px 20px;
+                &:extend(.navigation-icon all);
+                &.active:after {
+                    content: @icon-prev;
+                }
+            }
+            ul.dropdown {
+                display: none;
+                li {
+                    a {
+                        display: block;
+                        color: @navigation-level0-item-color;
+                        padding: 8px 20px;
+                        text-decoration: none;
+                    }
+                }
+            }
+            .ui-dialog {
+                background: none;
+                box-shadow: none;
+                ul.dropdown {
+                    padding: 0;
+                }
+            }
+            &.active {
+                ul {
+                    display: block;
+                }
+            }
+        }
+    }
+    &.active {
+        > .content {
+            display: block;
+        }
+    }
+
+    .header.links {
+        padding: 10px 20px;
+        li {
+            display: block;
+            margin: 0;
+            a {
+                display: block;
+                line-height: 35px;
+                .css(color, @navigation-level0-item-color);
+            }
+            &.welcome {
+                line-height: 35px;
+            }
+        }
+    }
+
+    .nav {
+        .parent {
+            > a {
+                position: relative;
+                &:extend(.navigation-icon all);
+                &.action.back:after {
+                    content: @icon-prev;
+                }
+            }
+        }
+    }
+}
+
+.navigation-tabs {
+    .data-accordion(
+        @_accordion-control-color: #333,
+        @_accordion-control-color-visited: #333,
+        @_accordion-control-color-hover: #333,
+        @_accordion-control-color-active: #333,
+        @_accordion-control-padding-left: 10px,
+        @_accordion-control-padding-right: 20px,
+        @_accordion-control-height: 45px,
+        @_accordion-control-line-height: 45px,
+        @_accordion-control-bg: #fff,
+        @_accordion-content-border: none,
+        @_accordion-control-border-top: none,
+        @_accordion-control-bg-active: #fff,
+        @_accordion-content-padding: 0,
+        @_accordion-content-bg: transparent,
+        @_accordion-control-margin-bottom: 0,
+        @_accordion-content-margin: 0
+    );
+    .item.title {
+        > .switch {
+            .icon-font(
+                 @_icon-font-content: @icon-down,
+                 @_icon-font-size: 36px
+             );
+            display: block;
+        }
+        &.active {
+            > .switch:before {
+                content: @icon-up
+            }
+        }
+    }
+    .item.content {
+        .css(border-bottom, @tab-content-border);
+        .nav > .level0:first-child {
+            border-top: none;
+        }
+    }
+}
+
+.main-navigation();
+.main-navigation-desktop();
+
+//
+//    Desktop
+//--------------------------------------
+.responsive(@break) when (@break = @break-point-1) {
+    html.open {
+        overflow: inherit;
+    }
+    body {
+        &.open {
+            overflow: inherit;
+        }
+    }
+    .action.toggle.nav {
+        display: none;  
+    }
+    .navigation {
+        margin-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        > ul > .level0 {
+            > a,
+            .action.back > a {
+                text-transform: uppercase;
+            }
+        }
+        .parent.more {
+            .parent {
+                > .submenu {
+                    position: relative;
+                    margin-top: 0;
+                    ul {
+                        margin: 0;
+                        padding-top: 0;
+                        padding-bottom: 0;
+                        border: none;
+                        box-shadow: none;
+                        background: transparent;
+                        &:after,
+                        &:before {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
